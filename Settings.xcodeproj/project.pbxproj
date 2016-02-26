@@ -10,6 +10,7 @@
 		8FCE6B991C8072B20079A587 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FCE6B981C8072B20079A587 /* Settings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FCE6BA01C8072B20079A587 /* Settings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCE6B951C8072B20079A587 /* Settings.framework */; };
 		8FCE6BA51C8072B20079A587 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCE6BA41C8072B20079A587 /* SettingsTests.swift */; };
+		8FCE6BB01C8072DB0079A587 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCE6BAF1C8072DB0079A587 /* NSUserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		8FCE6B9F1C8072B20079A587 /* SettingsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SettingsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCE6BA41C8072B20079A587 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		8FCE6BA61C8072B20079A587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FCE6BAF1C8072DB0079A587 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +73,8 @@
 		8FCE6B971C8072B20079A587 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				8FCE6B981C8072B20079A587 /* Settings.h */,
-				8FCE6B9A1C8072B20079A587 /* Info.plist */,
+				8FCE6BAF1C8072DB0079A587 /* NSUserDefaults.swift */,
+				8FCE6BB11C8072E20079A587 /* Supporting Files */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -81,9 +83,26 @@
 			isa = PBXGroup;
 			children = (
 				8FCE6BA41C8072B20079A587 /* SettingsTests.swift */,
-				8FCE6BA61C8072B20079A587 /* Info.plist */,
+				8FCE6BB21C8072F80079A587 /* Supporting Files */,
 			);
 			path = SettingsTests;
+			sourceTree = "<group>";
+		};
+		8FCE6BB11C8072E20079A587 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FCE6B981C8072B20079A587 /* Settings.h */,
+				8FCE6B9A1C8072B20079A587 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8FCE6BB21C8072F80079A587 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FCE6BA61C8072B20079A587 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FCE6BB01C8072DB0079A587 /* NSUserDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +328,7 @@
 		8FCE6BAA1C8072B20079A587 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -318,12 +339,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.Settings";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		8FCE6BAB1C8072B20079A587 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
