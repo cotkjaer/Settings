@@ -35,7 +35,7 @@ public extension NSUserDefaults
         setOrRemoveObject(text ?? defaultText, forKey: key)
     }
     
-    func textForKey(key: String, defaultText: String?) -> String?
+    func textForKey(key: String, defaultText: String? = nil) -> String?
     {
         return (objectForKey(key) as? String) ?? defaultText
     }
