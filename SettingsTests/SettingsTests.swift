@@ -9,28 +9,85 @@
 import XCTest
 @testable import Settings
 
-class SettingsTests: XCTestCase {
+let settings = NSUserDefaults.standardUserDefaults()
+
+class Codable: NSObject, NSCoding
+{
+    let bar: String
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    init(bar: String)
+    {
+        self.bar = bar;
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func encodeWithCoder(aCoder: NSCoder)
+    {
+        aCoder.encodeObject(bar, forKey: "bar")
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    required init(coder aDecoder: NSCoder)
+    {
+        bar = aDecoder.decodeObjectForKey("bar") as! String
+        super.init()
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
+
+
+//MARK: - Equatable
+
+extension Codable {
+    
+    override func isEqual(object: AnyObject?) -> Bool
+    {
+        guard object is Codable else { return false }
+        
+        if let codable = object as? Codable
+        {
+            return codable.bar == bar
+        }
+        
+        return false
+    }
+}
+
+func == (lhs: Codable, rhs:Codable) -> Bool
+{
+    return lhs.bar == rhs.bar
+}
+
+
+class SettingsTests: XCTestCase
+{
+    func test_Array_strings()
+    {
+        var strings: Array<String>?
+        
+        settings.setArray(strings, forKey: "strings")
+
+        settings.synchronize()
+        
+//        XCTAssertNil(settings.arrayForKey("strings"))
+
+        strings = ["a", "b", "c", "æblegrød"]
+
+        XCTAssertEqual(strings!, settings.arrayForKey("strings", defaultArray: strings)!)
+
+        settings.setArray(strings, forKey: "strings")
+        
+        XCTAssertEqual(strings!, settings.arrayForKey("strings") as! [String])
+    }
+    
+    func test_Codable()
+    {
+        let c = Codable(bar: "baz")
+        
+        settings.setCodable(c, forKey: "c")
+        
+        let c2 : Codable? = settings.codableForKey("c")
+        
+        XCTAssertNotNil(c2)
+        
+        XCTAssertEqual(c, c2!)
+    }
+}
+ 
